@@ -9,8 +9,10 @@
   "author": "pangsiyuan",
   "license": "ISC",
   "devDependencies": {
+    "fs": "0.0.1-security",
     "koa": "^2.7.0",
-    "koa-route": "^3.2.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
     "mysql": "^2.16.0"
   }
 }

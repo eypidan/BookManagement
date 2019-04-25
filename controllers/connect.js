@@ -16,7 +16,7 @@ function connect_database(query){
     
     connection.query(query, function (error, results, fields) {
       if (error) throw error;
-      console.log(results);
+      //console.log(results);
     });
     connection.end();
 }
