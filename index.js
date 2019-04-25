@@ -1,22 +1,17 @@
-let mysql = require('mysql');
-let connection = mysql.createConnection({
-    host:'10.79.25.117',
-    user:'3170105750',
-    password:'123456',
-    database:'book_management'
-});
-connection.connect(function(err) {
-    if (err) {
-      console.error('wrong password');
-      return;
-    }
-    //console.log(connection);
-    console.log('connected as id ' + connection.threadId);
-  });
+const route = require('koa-route');
+const koa = require('koa');
 
-connection.query('show tables;', function (error, results, fields) {
-  if (error) throw error;
-  console.log(results);
-});
+const app = new koa();
+const about = ctx => {
+  ctx.response.type = 'html';
+  ctx.response.body = '<a href="/">Index Page</a>';
+};
 
-connection.end();
+const main = ctx => {
+  ctx.response.body = 'Hello World';
+};
+
+app.use(route.get('/', main));
+app.use(route.get('/about', about));
+app.use(route.get('./login',login));
+app.listen(1112);
