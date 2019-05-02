@@ -5,18 +5,25 @@ var fn_signin = async (ctx,next) => {
     const password = ctx.request.body.password;
     const result = await cont_db('select * from admin');
 	// console.log(id);
-	
+	const fail_response = {
+		status:-1,   //fail,密码错误 或者 code错误
+	}
+	let sucess_response;
 	let sucess = false;
 	for(let i of result){
 		if(id === i.ad_id && password === i.password){
 			sucess = true;
+			sucess_response={
+				status:1,
+				token:token
+			}
 			break;
 		}
 	}
 	if(sucess){
-		ctx.response.body = ;
+		ctx.response.body = JSON.stringify(sucess_response);
 	}else{
-
+		ctx.response.body = JSON.stringify(fail_response);
 	}
 };
 
