@@ -36,7 +36,6 @@
     url: /addcard
     data: {
         name:"肥猫",
-        userid: "学号",
         department:"大肥猫学院",
         type:"T/S",
         token: "Token for identity"
@@ -47,6 +46,7 @@
     Content-type: application/json
     body: {
         status: 一个状态码,
+        card_id: x ,
         message:"sucess/fail"
     }
 
@@ -73,6 +73,7 @@ status 状态码及其 message 含义：
             publisher:"ZheJiangUniversity",
             year:"1999",
             price:"123.22",
+            author:"xxx"
         }
         token: "Token for identity"
     } 
@@ -81,7 +82,8 @@ status 状态码及其 message 含义：
 
     Content-type: application/json
     body: {
-        status: 一个状态码
+        status: 一个状态码,
+        bookid: xxx,
         message: "状态说明"
     }
 
@@ -184,7 +186,7 @@ order 状态码
 | 4     | 出版年份排序 |
 | 5     | 价格 |
 
-### borrow
+### 5. borrow
 
 借书
 
@@ -211,7 +213,7 @@ order 状态码
 | 1      | OK                 |
 | -1     | 失败 |
 
-### return
+### 6. return
 
 借书
 
