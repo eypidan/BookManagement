@@ -1,6 +1,28 @@
 const cont_db = require('./connect.js')
 const __token__ = "99fe4c836e3a229af9725e24955dfdb779e315e0"
 
+
+// Date.prototype.format = function(fmt) {    //日期类型转换
+//     var o = { 
+//        "M+" : this.getMonth()+1,                 //月份 
+//        "d+" : this.getDate(),                    //日 
+//        "h+" : this.getHours(),                   //小时 
+//        "m+" : this.getMinutes(),                 //分 
+//        "s+" : this.getSeconds(),                 //秒 
+//        "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+//        "S"  : this.getMilliseconds()             //毫秒 
+//    }; 
+//    if(/(y+)/.test(fmt)) {
+//            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+//    }
+//     for(var k in o) {
+//        if(new RegExp("("+ k +")").test(fmt)){
+//             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+//         }
+//     }
+//    return fmt; 
+// }    
+
 let addcard = async(ctx,next) => {
     const name = ctx.request.body.name; 
     const department = ctx.request.body.department;
@@ -69,12 +91,57 @@ let addbook = async(ctx,next) => {
 };
 
 let book_borrow = async(ctx,next) => {
+    const card_id=ctx.request.body.card_id;
+    const book_id=ctx.request.body.book_id;
+    const data_borrow=ctx.request.body.data_borrow;
+    const data_return=ctx.request.body.data_return;
+    const admin_name=ctx.request.body.admin_name;
+    const token = ctx.request.body.token;
     
+    if(token !== __token__){
+        const fail_response = {
+            status:-1, 
+            message:"token is wrong"
+        }
+        ctx.response.body = JSON.stringify(fail_response);
+        return;
+    }
+
+    const result = await cont_db(`
+    insert into borrow (card_id,book_id,borrow_day,return_day,passer)
+    values
+    ('${card_id}','${book_id}','${data_borrow}','${data_return}','${admin_name}');
+    `);
+    const sucess_response = {
+        status:1, 
+        message:"borrow book sucessfully"
+    }
+    ctx.response.body = JSON.stringify(sucess_response);
+    return;
 };
 
 
 let booK_return = async(ctx,next) => {
+    const card_id=ctx.request.body.card_id;
+    const book_id=ctx.request.body.book_id;
+    const token = ctx.request.body.token;
+    
+    if(token !== __token__){
+        const fail_response = {
+            status:-1, 
+            message:"token is wrong"
+        }
+        ctx.response.body = JSON.stringify(fail_response);
+        return;
+    }
 
+    const result = await cont_db(`delete from borrow where card_id='${card_id}' AND book_id='${book_id}';`);
+    const sucess_response = {
+        status:1, 
+        message:"return book sucessfully"
+    }
+    ctx.response.body = JSON.stringify(sucess_response);
+    return;
 };
 
 module.exports = {

@@ -14,6 +14,7 @@
     url: /login
     data: {
         id: "1231312313",
+        name:"xxx",
         password: "sdufh2398fh"
     }
 
@@ -197,7 +198,10 @@ order 状态码
     url: borrow
     data: {
         card_id: "借书证唯一id",
-        book_id:"每一本书的唯一id"
+        book_id:"每一本书的唯一id",
+        data_borrow:"(now) xxxx-xx-xx",
+        data_return:"xxxx-xx-xx",
+        admin_name:"sdff",
         token: "Token for identity",
     }
 

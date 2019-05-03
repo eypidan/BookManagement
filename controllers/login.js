@@ -2,7 +2,8 @@ const cont_db = require('./connect.js')
 const token = "99fe4c836e3a229af9725e24955dfdb779e315e0"
 var fn_signin = async (ctx,next) => {
     const id = ctx.request.body.id; 
-    const password = ctx.request.body.password;
+	const password = ctx.request.body.password;
+
     const result = await cont_db('select * from admin');
 	// console.log(id);
 	const fail_response = {
