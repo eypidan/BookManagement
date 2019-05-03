@@ -68,14 +68,17 @@ status 状态码及其 message 含义：
     Content-type: application/json
     url: /addBook
     data: {
-        book:{
-            type:"Computer Sicence",
-            bookname:"Database System Introduction",
-            publisher:"ZheJiangUniversity",
-            year:"1999",
-            price:"123.22",
-            author:"xxx"
-        }
+        book:[
+            {
+                type:"Computer Sicence",
+                bookname:"Database System Introduction",
+                publisher:"ZheJiangUniversity",
+                year:"1999",
+                price:"123.22",
+                author:"xxx"
+            },
+            ...
+        ]
         token: "Token for identity"
     } 
 

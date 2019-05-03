@@ -31,13 +31,8 @@ let addcard = async(ctx,next) => {
 };
 
 let addbook = async(ctx,next) => {
-    const bookname = ctx.request.body.bookname; 
-    const type = ctx.request.body.type;
-    const publisher = ctx.request.body.publisher;
-    const year=ctx.request.body.year;
-    const price=ctx.request.body.price;
-    const author=ctx.request.body.author;
-
+    const book=ctx.request.body.book;
+    const bookname=[]
     const token = ctx.request.body.token;
     
     if(token !== __token__){
@@ -48,22 +43,25 @@ let addbook = async(ctx,next) => {
         ctx.response.body = JSON.stringify(fail_response);
         return;
     }
-    const result2 = await cont_db(`
-    insert ignore into book_sum_stock (bookname)
-    values
-    ('${bookname}');
-    `);
 
-    const result = await cont_db(`
-    insert into book (type,bookname,publisher,year,author,price)
-    values
-    ('${type}','${bookname}','${publisher}','${year}','${author}','${price}');
-    `);
+    book.forEach((n,i)=>{
+        bookname.push({bookname:n.bookname});
+    })
+    const result2 = await cont_db.addmultiple_book(
+        'insert ignore into book_sum_stock (bookname) values ?',
+        bookname
+    );
+
+    const result = await cont_db.addmultiple_book(
+        'insert into book (type,bookname,publisher,year,author,price) values ?',
+        book
+    );
     const sucess_response = {
         status:1, 
         book_id:result.insertId,
         message:"add book sucessfully"
     }
+    cont_db.end();
     ctx.response.body = JSON.stringify(sucess_response);
     return;
 };

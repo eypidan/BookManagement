@@ -57,7 +57,7 @@ let find = async(ctx,next)=>{
         and type like '%${type}%' 
         order by ${order} ASC;
     `;
-    console.log(query);
+    // console.log(query);
     const result = await cont_db.easy_query(query);
     const sucess_response = {
         status:1, 
