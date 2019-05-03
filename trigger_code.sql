@@ -1,20 +1,4 @@
 DELIMITER //
-DROP TRIGGER IF EXISTS check_book;
-CREATE TRIGGER check_book after INSERT on borrow
-for each row begin
-	declare flag INT;
-	select stock into flag from book where bno=new.bno; 
-	if flag>0 then
-		update book set stock=stock-1 where bno=new.bno;
-	else
-		delete from borrow where bno=new.bno;
-	end if;
-end;//
-DELIMITER ;
-
-
-
-DELIMITER //
 DROP TRIGGER IF EXISTS add_book_trigger;
 CREATE TRIGGER add_book_trigger after INSERT on book
 for each row begin

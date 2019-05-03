@@ -22,8 +22,10 @@ var fn_signin = async (ctx,next) => {
 		}
 	}
 	if(sucess){
+		cont_db.end();
 		ctx.response.body = JSON.stringify(sucess_response);
 	}else{
+		cont_db.end();
 		ctx.response.body = JSON.stringify(fail_response);
 	}
 };
