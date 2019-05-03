@@ -5,14 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Book ManageMent</title>
+    <script type="text/javascript" src="./index.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="judge()">
     <h1>简易图书管理系统</h1>
     </br>
-    <h4 onclick="window.location.href='./add.html'">增加图书、借书卡</h4>
-    <h4 onclick="window.location.href='./find.html'">查询图书，借还图书</h4>
     
+    <a id="l05" style="cursor:pointer;text-decoration:none;" 
+    href="./add.html">
+    增加图书、借书卡</a>
+   </br>
+    <a id="l05s" style="cursor:pointer;text-decoration:none;" 
+    href="./find.html">
+    查询图书，借还图书</a>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
