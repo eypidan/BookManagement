@@ -8,14 +8,11 @@ let connection = mysql.createConnection({
 });
 
 function connect_database(query){
-
-	
 	return new Promise(function (resolve, reject) {
 		connection.query(query, function (error, results, fields) {
-			
 			if (error) return reject(error);
-			// console.log(fields);
-			resolve(results);		
+			resolve(results);
+			
 		});
 	  });
 }

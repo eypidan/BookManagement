@@ -26,7 +26,6 @@ let display = async(ctx,next) => {
         result:result,
     }
     ctx.response.body = JSON.stringify(sucess_response);
-    cont_db.end();
     return;
 };
 
@@ -65,11 +64,14 @@ let find = async(ctx,next)=>{
         result:result,
     }
     ctx.response.body = JSON.stringify(sucess_response);
-    cont_db.end();
+  
     return;
 }
-
+function end(){
+    cont_db.end();
+}
 module.exports = {
     'POST /select/display': display,
     'POST /select/find': find,
+    'POST /end': end,
 };

@@ -2,7 +2,16 @@ const controller = require('./controller.js');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 
+const static = require('koa-static')
+const path = require('path')
 const app = new Koa();
+
+const staticPath = './static'
+
+app.use(static(
+  path.join( __dirname,  staticPath)
+))
+
 
 // log request URL:
 app.use(async (ctx, next) => {
