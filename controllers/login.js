@@ -4,7 +4,7 @@ var fn_signin = async (ctx,next) => {
     const id = ctx.request.body.id; 
 	const password = ctx.request.body.password;
 
-    const result = await cont_db('select * from admin');
+    const result = await cont_db.easy_query('select * from admin');
 	// console.log(id);
 	const fail_response = {
 		status:-1,   //fail,密码错误 或者 code错误

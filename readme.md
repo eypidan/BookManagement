@@ -113,25 +113,22 @@ status 状态码及其 message 含义：
 
     Content-type: application/json
     body: {
-        status: 一个状态码
-        result: [
-            0: {
-                bno: "书号",
-                type: "类型",
-                bookname: "书名",
-                publisher:"",
-                year:"",
-                author:"",
-                price:"",
-                sum:"",
-                stock:""
-            },
-            1:{
-                ...
-            },
-            ...
-        ]
+    "status": 1,
+    "result": [
+        {
+            "book_id": 10,
+            "type": "novel",
+            "bookname": "The Old Curiosity Shop",
+            "publisher": "Orcale",
+            "year": 2018,
+            "author": "Charles John Huffam Dickens",
+            "price": 22.15
+        },
+        ...
+
+    ]
     }
+
 
 ### 4. select/find
 
@@ -146,7 +143,8 @@ status 状态码及其 message 含义：
         type:"Computer Sicence",
         bookname:"Database System Introduction",
         publisher:"ZheJiangUniversity",
-        year:"1999",
+        year_min:"1999",
+        yeasr_max:"2010",
         price_min:"123.22",
         price_max:"999.55",
         order:排序状态码,
@@ -157,35 +155,31 @@ status 状态码及其 message 含义：
 
     Content-type: application/json
     body: {
-        status: 一个状态码
-        result: [
-            0: {
-                bno: "书号",
-                type: "类型",
-                bookname: "书名",
-                publisher:"",
-                year:"",
-                author:"",
-                price:"",
-                sum:"",
-                stock:""
-            },
-            1:{
-                ...
-            },
-            ...
-        ]
+    "status": 1,
+    "result": [
+        {
+            "book_id": 10,
+            "type": "novel",
+            "bookname": "The Old Curiosity Shop",
+            "publisher": "Orcale",
+            "year": 2018,
+            "author": "Charles John Huffam Dickens",
+            "price": 22.15
+        },
+        ...
+        
+    ]
     }
 
-order 状态码
+order 
 
 | order |                  |
 | -----: | :----------------------- |
-| 1      | 书名首字母排序                       |
-| 2     | 类别排序           |
-| 3     | 出版社排序                |
-| 4     | 出版年份排序 |
-| 5     | 价格 |
+| bookname      | 书名首字母排序                       |
+| type     | 类别排序           |
+| publisher     | 出版社排序                |
+| year     | 出版年份排序 |
+| price     | 价格 |
 
 ### 5. borrow
 
